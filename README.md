@@ -275,7 +275,7 @@ import boto3
 dynamodb = boto3.resource('dynamodb',region_name='ap-northeast-1')
 ~~~
 ___
-#180709_loadtable/crawling
+#180709_loadtable/crawling       180709~180711
 -
 `올 것이 오고야 말았다. `    
 `'json'`   
@@ -413,11 +413,11 @@ ___
 ~~~json
 {
 	"0": {
-		"name": "상그리아 에이드",
+		"name": " 에이드",
 		"price": "6000"
 	},
 	"1": {
-		"name": "레몬 셔벗 에이드",
+		"name": "레몬 에이드",
 		"price": "6500"
 	},
 	"2": {
@@ -425,7 +425,7 @@ ___
 		"price": "5500"
 	},
 	"3": {
-		"name": "콜드브루 오트 라떼",
+		"name": " 라떼",
 		"price": "6000"
 	}
 }

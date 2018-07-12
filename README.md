@@ -28,7 +28,7 @@ for n in range (33)
     url = base_url.format(n+1)   
     webpage = urlopen(url)   
 ~~~
-url에 변수를 두어 for문을 돌릴 때 페이지를 넘기면서 값을 출력했다.   
+*url*에 변수를 두어 for문을 돌릴 때 페이지를 넘기면서 값을 출력했다.   
 
 #180628_location
 -
@@ -50,4 +50,4 @@ for i in range(3):
         main(driver.page_source)
     driver.find_element_by_xpath('').click()           #다음페이지 버튼 클릭
 ~~~
-*xpath*를 이용해 버튼을 넘겨 페이지를 이동했다.
+*xpath*를 이용해 버튼을 눌러 페이지를 이동했다.

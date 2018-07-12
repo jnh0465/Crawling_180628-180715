@@ -3,14 +3,15 @@
 -
 `
 원래목표 :     
+`    
 aws lambda 함수를 사용해 파이썬 코드를 zip으로 올리고 CloudWatch Events 트리거를 연결해     
-`   
-`
 cron식으로 하루에 한 번씩 dynamodb로 업로드하기
-`
    
 `
-수정된목표 : aws ec2(윈도우)에서 하루에 한 번씩 페이지를 크롤링해 얻은 데이터를 aws dynamodb로 전송  
+수정된목표 : 
+`   
+1. boto3(aws sdk for python)를 import해서 파이썬 코드를 돌려 데이터를 json파일로 저장하고 dynamodb에 테이블 생성, 로드, 삭제, 검색하기    
+2. aws ec2(윈도우)에서 하루에 한 번씩 페이지를 크롤링해 얻은 데이터를 aws dynamodb로 전송  
 `   
 `
 +boto3(aws sdk for python)로 ec2 인스턴스를 끄고 킬 수 있으면 좋겠다

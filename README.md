@@ -1,4 +1,16 @@
 # crawling
+##최종목표
+-
+`
+원래목표 :    
+aws lambda 함수를 사용해 파이썬 코드를 돌리고 CloudWatch Events 트리거를 연결해 cron식으로 하루에 한 번씩 dynamodb로 업로드하기
+`
+`
+수정된목표 : aws ec2(윈도우)에서 하루에 한 번씩 페이지를 크롤링해 얻은 데이터를 aws dynamodb로 전송   
+`
+`
++boto3(aws sdk for python)로 ec2 인스턴스를 끄고 킬 수 있으면 좋겠다
+`
 #180626
 -
 ~~~

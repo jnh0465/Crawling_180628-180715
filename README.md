@@ -23,19 +23,20 @@ ___
 -
 `
 친하지 않았던 개발자도구와 친해졌고 평소 접하던 웹사이트가 하나하나 태그로 이루어져있고 공개되어 있어서`   
-`쉽게 읽어올 수 있다는 것이 신기했다.`   
+`쉽게 읽어올 수 있다는 것이 신기했다.`  
+`또한, 파이썬으로 처음짜본 코드라 이게 맞나 아닌가? 헷갈리면서도 신기했다.`  
 
 ~~~python
 titles = soup.find_all('div', {'class':'title'})
 ~~~ 
-*find_all* 함수를 사용해서 페이지의 태그값을 읽어왔다.  
+`*find_all* 함수를 사용해서 페이지의 태그값을 읽어왔다. `    
 ~~~python
 base_url = 'url'  
 for n in range (33)   
     url = base_url.format(n+1)   
     webpage = urlopen(url)   
 ~~~
-*url*에 변수를 두어 for문을 돌릴 때 페이지를 넘기면서 값을 출력했다.   
+`*url*에 변수를 두어 for문을 돌릴 때 페이지를 넘기면서 값을 출력했다. `     
 ___
 #180628_location
 -
@@ -55,8 +56,8 @@ def save_json(group_data):
     with open('.json', 'a', encoding="EUC-KR") as make_file:
         json.dump(group_data, make_file, ensure_ascii=False, indent="\t")
 ~~~
-#180626과 같은 내용을 크롤링해오는 거지만 *selenium*을 이용해 크롬으로 긁어왔고  
-긁어온 내용을 *csv*와 *json*파일로 저장해 보았다.   
+`#180626과 같은 내용을 크롤링해오는 거지만 *selenium*을 이용해 크롬으로 긁어왔고`     
+`긁어온 내용을 *csv*와 *json*파일로 저장해 보았다.`      
    
 ~~~python
 base_url = 'url'  
@@ -64,7 +65,7 @@ for n in range (33)
     url = base_url.format(n+1)   
     webpage = urlopen(url)   
 ~~~
-*url*을 for문을 돌려서 url 주소로 읽어왔던 전 방식과는 달리   
+`*url*을 for문을 돌려서 url 주소로 읽어왔던 전 방식과는 달리`     
    
 ~~~python
 for i in range(3):                                                           
@@ -73,7 +74,7 @@ for i in range(3):
         main(driver.page_source)
     driver.find_element_by_xpath('').click()           #다음페이지 버튼 클릭
 ~~~
-*xpath*를 이용해 버튼을 눌러 페이지를 이동했다.
+`*xpath*를 이용해 버튼을 눌러 페이지를 이동했다.`   
 
 ~~~json
 {										#180628_location json
@@ -125,7 +126,7 @@ crawing_page(4,"")
 crawing_page(5,"")
 crawing_page(6,"")
 ~~~
-함수인자로 버튼의 xpath값과 json파일에 사용될 param값을 입력받아서 json을 만들어 보았다.
+`함수인자로 버튼의 xpath값과 json파일에 사용될 param값을 입력받아서 json을 만들어 보았다.`    
 
 ~~~json
 {										#180629_menu json
@@ -158,7 +159,7 @@ ___
 `또 크롤링을 했다고 하더라도 json에 익숙하지 않다보니 형식을 어떻게 해야할지 감을 잡지 못했다.`   
 
 ~~~json
-{
+{										#180701_ingredient json
 	"sandwich_ingredients": [
 		[
 			"스파이시 ",
@@ -240,7 +241,7 @@ def divide(div,data,output):
  save_json(group_data)
 ~~~   
 ~~~json
-{
+{										#180704_menu&price json
 	"coffee&drink": [
 		[
 			"에이드",
@@ -259,5 +260,111 @@ def divide(div,data,output):
 			"6,000"
 		]
 	]
+}
+~~~
+___
+#180708_create/deletetable
+-
+`aws cli configure 설정과 리전만 잘 입력해 두면`       
+`dynamodb.create_table함수와 table.delete()함수로 이루어진 몇 줄 안되는 코드로`    
+`dynamodb에 테이블이 생성되고 삭제되는게 너무 신기했다.`    
+~~~python
+import boto3
+dynamodb = boto3.resource('dynamodb',region_name='ap-northeast-1')
+~~~
+___
+#180709_loadtable/crawling
+-
+`올 것이 오고야 말았다. `    
+`'json'`   
+    
+Link: [Amazon DynamoDB][awslink]
+[awslink]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Python.02.html "loadtable&json"
+    
+~~~json
+[										#dynamodb에서 요구하는 json
+   {
+      "year" : ... ,
+      "title" : ... ,
+      "info" : { ... }
+   },
+   {
+      "year" : ...,
+      "title" : ...,
+      "info" : { ... }
+   },
+
+    ...
+]
+~~~   
+`위의 json형식으로 load할 수 있다고 aws 개발자 안내서에 나와있다. 하지만 내가 만든 json형식은`      
+~~~json
+{										#180704_menu&price json
+	"coffee&drink": [
+		[
+			"에이드",
+			"6,000"
+		],
+		[
+			"레몬 에이드",
+			"6,500"
+		],
+		[
+			"수박주스",
+			"5,500"
+		],
+		[
+			"라떼",
+			"6,000"
+		]
+	]
+}
+~~~
+`param값이야 지정해 준다고 쳐도 '{'와 '['의 차이는 대체 어떻게 바꾸어주어야 할지 감도 잡히지 않았다.`
+`re.sub으로 {을 [라고 바꿔주는 꼼수도 써볼까 했지만 역시 통하지 않았다.`    
+
+~~~python
+divide(count,data,output)
+    for i in range(0,count):
+        data_all[i]={
+            'name':output[0][i],
+            'price':output[1][i],
+        }
+        a[i]=data_all[i]
+    
+    print("count = {}".format(count))
+    b= a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10],a[11],a[12],a[13],a[14],a[15],a[16],a[17],a[18],a[19],a[20],a[21],a[22],a[23],a[24],a[25],a[26],a[27],a[28],a[29],a[30],a[31],a[32],a[33],a[34],a[35],a[36],a[37],a[38],a[39],a[40],a[41],a[42],a[43],a[44],a[45],a[46],a[47],a[48],a[49],a[50],a[51],a[52],a[53],a[54],a[55],a[56],a[57],a[58],a[59],a[60],a[61],a[62],a[63],a[64],a[65],a[66],a[67],a[68],a[69],a[70],a[71]
+    save_json(b,'_menu.json')
+~~~
+`결국 내가 이용한 코드는 이거,`   
+`count값으로 나눠주고 count만큼 이름과 가격을 묶어준다.` 
+`for문을 돌려 a[i]를 입력해주는 좋은 방법이 있을것같아 여러방법으로 시도했지만,`
+~~~python
+for i in range(0,count):
+        data_all={
+            'name':output[0][i],
+            'price':output[1][i],
+        }
+        a=data_all
+ save_json(a,'twosome_menu.json')
+~~~
+`결과는`   
+~~~json
+{
+	"name": "에스프레소 싱글",
+	"price": "3300"
+}
+~~~
+`이런식으로 맨 마지막 것만 출력되거나,`   
+~~~json
+{
+	"name",
+	"price",
+	"name",
+	"price",
+	"name",
+	"price",
+	"name",
+	"price"
 }
 ~~~

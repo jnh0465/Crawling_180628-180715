@@ -210,4 +210,54 @@ ___
 요거ㅇㅇ소  - 가격안나옴
 봉구ㅇㅇㅇ거 - 나오는데 반은 jpg임
 파ㅇㅇ찌 - 나오는데 팝업형태라 못읽음
+~~~   
+___
+#180704_menu&price
+-
+`하나의 for문으로 모든 데이터를 읽어오지 못하는 경우가 생겼다.`     
+`여러개의 for문으로 각각 읽어오자니 출력형식이 메뉴만 주루룩 가격만 주루룩 나오게 되었다.`   
+`처음에는 divide 함수로 div를 1로 해서 하나씩 자르고 붙여주는 것을 생각했는데,`   
+`태그로 완벽하게 읽히지 않아 re.sub이나 글자수로 잘라주어야 하는 것까지 나누어지는 경우가 생겨서`   
+`태그가 제대로 읽히는 for함수에 count값을 붙여주어서 count을 div해서 나눠주고`   
+`배열로 메뉴하나 가격하나 붙여주어 json으로 출력하는 것을 만들었다`
+
+~~~python
+def divide(div,data,output):
+    start=0
+    end=len(data)                             
+    for idx in range(start, end + div, div):
+        out=data[start:start + div]
+        if out !=[]:
+            output.append(out)
+        start=start+div
+~~~   
+~~~python
+ divide(count,data,output)
+ for i in range(0,count):
+    data_all.extend([output[0][i], output[1][i]])
+    divide(2,data_all,data_all_output)
+    group_data[params]=data_all_output
+  save_json(group_data)
+~~~   
+~~~json
+{
+	"coffee&drink": [
+		[
+			"에이드",
+			"6,000"
+		],
+		[
+			"레몬 에이드",
+			"6,500"
+		],
+		[
+			"수박주스",
+			"5,500"
+		],
+		[
+			"라떼",
+			"6,000"
+		]
+	]
+}
 ~~~

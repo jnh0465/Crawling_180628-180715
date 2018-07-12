@@ -31,14 +31,14 @@ ___
 ~~~python
 titles = soup.find_all('div', {'class':'title'})
 ~~~ 
-`*find_all* 함수를 사용해서 페이지의 태그값을 읽어왔다. `    
+`find_all 함수를 사용해서 페이지의 태그값을 읽어왔다. `    
 ~~~python
 base_url = 'url'  
 for n in range (33)   
     url = base_url.format(n+1)   
     webpage = urlopen(url)   
 ~~~
-`*url*에 변수를 두어 for문을 돌릴 때 페이지를 넘기면서 값을 출력했다. `     
+`url에 변수를 두어 for문을 돌릴 때 페이지를 넘기면서 값을 출력했다. `     
 ___
 #180628_location
 -
@@ -58,8 +58,8 @@ def save_json(group_data):
     with open('.json', 'a', encoding="EUC-KR") as make_file:
         json.dump(group_data, make_file, ensure_ascii=False, indent="\t")
 ~~~
-`#180626과 같은 내용을 크롤링해오는 거지만 *selenium*을 이용해 크롬으로 긁어왔고`     
-`긁어온 내용을 *csv*와 *json*파일로 저장해 보았다.`      
+`#180626과 같은 내용을 크롤링해오는 거지만 selenium을 이용해 크롬으로 긁어왔고`     
+`긁어온 내용을 csv와 json파일로 저장해 보았다.`      
    
 ~~~python
 base_url = 'url'  
@@ -67,7 +67,7 @@ for n in range (33)
     url = base_url.format(n+1)   
     webpage = urlopen(url)   
 ~~~
-`*url*을 for문을 돌려서 url 주소로 읽어왔던 전 방식과는 달리`     
+`url을 for문을 돌려서 url 주소로 읽어왔던 전 방식과는 달리`     
    
 ~~~python
 for i in range(3):                                                           
@@ -76,7 +76,7 @@ for i in range(3):
         main(driver.page_source)
     driver.find_element_by_xpath('').click()           #다음페이지 버튼 클릭
 ~~~
-`*xpath*를 이용해 버튼을 눌러 페이지를 이동했다.`   
+`xpath를 이용해 버튼을 눌러 페이지를 이동했다.`   
 
 ~~~json
 {										#180628_location json
@@ -395,11 +395,17 @@ for i in range(0,count):
 	"price"
 }
 ~~~
-`이런 식으로 name과 price만 나오는 사태가 벌어졌다.` 
-`일단 급한건 db저장이니 다른 팀원을 위해 잠시 접어두기로 한다.`    
+`이런 식으로 name과 price만 나오는 사태가 벌어졌다.`
+___
+~~~python
+b= a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10],a[11],a[12],a[13],a[14],a[15],a[16],a[17],a[18],a[19],a[20],a[21],a[22],a[23],a[24],a[25],a[26],a[27],a[28],a[29],a[30],a[31],a[32],a[33],a[34],a[35],a[36],a[37],a[38],a[39],a[40],a[41],a[42],a[43],a[44],a[45],a[46],a[47],a[48],a[49],a[50],a[51],a[52],a[53],a[54],a[55],a[56],a[57],a[58],a[59],a[60],a[61],a[62],a[63],a[64],a[65],a[66],a[67],a[68],a[69],a[70],a[71]
+~~~
+`','로 연결하는 것이 포인트인 것 같아 익숙하지 않은 파이썬으로 join함수도 써보고,`   
+`for문을 돌릴때 콤마를 어떻게 이어주고자도 했지만 방법을 모르겠다. json 만드는 형식을 뒤집어야할지도 모르겠다.`   
+`일단 급한건 db저장과 업로드니 다른 팀원을 위해 잠시 접어두기로 한다.`    
 ___
 +왜 됨?? 
-`180713 00:20 read.me 작성도중 애매하게 json이 되는 것을 발견했다. 좀 더 고쳐 봐야 겠다.`    
+`180713 00:20 read.me 작성도중 코드 수정해 보다가 애매하게 json이 되는 것을 발견했다. 좀 더 고쳐 봐야 겠다.`    
 ~~~python
     divide(count,data,output)
     for i in range(0,count):

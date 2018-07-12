@@ -15,13 +15,22 @@ url에 변수를 두어 for문을 돌릴 때 페이지를 넘기면서 값을 �
 
 #180628_location
 -
-#180626과 같은 내용을 크롤링해오는 거지만 *selenium*을 이용해 크롬으로 긁어왔고 긁어온 내용을 *csv*와 *json*파일로 저장해 보았다.   
-또 url을 for문을 돌려서 읽어왔던 전 방식과는 달리   
+#180626과 같은 내용을 크롤링해오는 거지만 *selenium*을 이용해 크롬으로 긁어왔고  
+긁어온 내용을 *csv*와 *json*파일로 저장해 보았다.   
 
-`
+~~~
+base_url = 'url'  
+for n in range (33)   
+    url = base_url.format(n+1)   
+    webpage = urlopen(url)   
+~~~
+*url*을 for문을 돌려서 url 주소로 읽어왔던 전 방식과는 달리   
+
+~~~
 for i in range(3):                                                           
     for i in range(3,12):
         driver.find_element_by_xpath(''+str(i)+'').click() 
         main(driver.page_source)
     driver.find_element_by_xpath('').click()           #다음페이지 버튼 클릭
-`
+~~~
+*xpath*를 이용해 버튼을 넘겨 페이지를 이동했다.

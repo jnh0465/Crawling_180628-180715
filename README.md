@@ -15,8 +15,10 @@ CloudWatch Events 트리거를 연결해 cron식으로 하루에 한 번씩 dyna
 - [x] boto3(aws sdk for python)를 import해 dynamodb에 테이블 생성, 로드, 삭제, 검색하는 코드 만들기
 - [ ] aws ec2(윈도우)에서 하루에 한 번씩 페이지를 크롤링해 얻은 데이터를 aws dynamodb로 전송  
 
+`
+희망사항 :
+`   
 +boto3(aws sdk for python) 혹은 CloudWatch Events로 ec2 인스턴스를 끄고 킬 수 있으면 좋겠다
-`    
 
 ___
 #180626
@@ -297,7 +299,7 @@ Link: [Amazon DynamoDB][awslink]
     ...
 ]
 ~~~   
-`위의 json형식으로 load할 수 있다고 aws 개발자 안내서에 나와있다. 하지만 내가 만든 json형식은`      
+`위의 json형식으로 load할 수 있다고 aws 개발자 안내서에 나와있다. 하지만 내가 만든 json형식은 아래의 json이다.`      
 ~~~json
 {										#180704_menu&price json
 	"coffee&drink": [
@@ -320,9 +322,9 @@ Link: [Amazon DynamoDB][awslink]
 	]
 }
 ~~~
-`param값이야 지정해 준다고 쳐도 '{'와 '['의 차이는 대체 어떻게 바꾸어주어야 할지 감도 잡히지 않았다.`
+`param값이야 지정해 준다고 쳐도 '{'와 '['의 차이는 대체 어떻게 바꾸어주어야 할지 감도 잡히지 않았다.`   
 `re.sub으로 {을 [라고 바꿔주는 꼼수도 써볼까 했지만 역시 통하지 않았다.`    
-
+___
 ~~~python
 divide(count,data,output)
     for i in range(0,count):
@@ -336,9 +338,34 @@ divide(count,data,output)
     b= a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10],a[11],a[12],a[13],a[14],a[15],a[16],a[17],a[18],a[19],a[20],a[21],a[22],a[23],a[24],a[25],a[26],a[27],a[28],a[29],a[30],a[31],a[32],a[33],a[34],a[35],a[36],a[37],a[38],a[39],a[40],a[41],a[42],a[43],a[44],a[45],a[46],a[47],a[48],a[49],a[50],a[51],a[52],a[53],a[54],a[55],a[56],a[57],a[58],a[59],a[60],a[61],a[62],a[63],a[64],a[65],a[66],a[67],a[68],a[69],a[70],a[71]
     save_json(b,'_menu.json')
 ~~~
-`결국 내가 이용한 코드는 이거,`   
-`count값으로 나눠주고 count만큼 이름과 가격을 묶어준다.` 
-`for문을 돌려 a[i]를 입력해주는 좋은 방법이 있을것같아 여러방법으로 시도했지만,`
+   
+`결국 내가 이용한 코드는 위의 코드`  
+`json값은 아래와 같이 나온다.`   
+~~~json
+[
+	{
+		"name": " 에이드",
+		"price": "6000"
+	},
+	{
+		"name": "레몬 에이드",
+		"price": "6500"
+	},
+	{
+		"name": "수박주스",
+		"price": "5500"
+	},
+	{
+		"name": " 라떼",
+		"price": "6000"
+	}
+]
+~~~
+    
+    
+`count값으로 나눠주고 count만큼 이름과 가격을 묶어준다는 것은 지난번 파이썬 파일과 같다.`   
+`문제는 저 수많은 a[0],a[1]...a[71] 들인데,`   
+`for문을 돌려 a[i]를 입력해주는 좋은 방법이 있을것같아 여러방법으로 시도했지만,`    
 ~~~python
 for i in range(0,count):
         data_all={
@@ -355,7 +382,7 @@ for i in range(0,count):
 	"price": "3300"
 }
 ~~~
-`이런식으로 맨 마지막 것만 출력되거나,`   
+`이런 식으로 맨 마지막 것만 출력되거나,`   
 ~~~json
 {
 	"name",
@@ -368,3 +395,4 @@ for i in range(0,count):
 	"price"
 }
 ~~~
+`이런 식으로 name과 price만 나오는 사태가 벌어졌다.`   

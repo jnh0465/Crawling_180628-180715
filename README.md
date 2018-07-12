@@ -235,9 +235,9 @@ def divide(div,data,output):
  divide(count,data,output)
  for i in range(0,count):
     data_all.extend([output[0][i], output[1][i]])
-    divide(2,data_all,data_all_output)
-    group_data[params]=data_all_output
-  save_json(group_data)
+ divide(2,data_all,data_all_output)
+ group_data[params]=data_all_output
+ save_json(group_data)
 ~~~   
 ~~~json
 {

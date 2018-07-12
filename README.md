@@ -21,6 +21,10 @@ CloudWatch Events 트리거를 연결해 cron식으로 하루에 한 번씩 dyna
 ___
 #180626
 -
+`
+친하지 않았던 개발자도구와 친해졌고 평소 접하던 웹사이트가 하나하나 태그로 이루어져있고 공개되어 있어서`   
+`쉽게 읽어올 수 있다는 것이 신기했다.`   
+
 ~~~python
 titles = soup.find_all('div', {'class':'title'})
 ~~~ 
@@ -35,6 +39,9 @@ for n in range (33)
 ___
 #180628_location
 -
+`beautifulsoup으로 읽어올 수 없었던 사이트가 seleniume을 통해 창이 뜨면서(!) 동적으로 긁어올 수 있는게 신기했고,`   
+`selector값이 아닌 xpath값으로 클릭하고 다음페이지로 이동할 수 있다는 것이 신기했다.`   
+`또, 처음 접하는 json파일이 너무 생소했다.`   
 ~~~python
 driver = webdriver.Chrome('')        #selenium
 driver.get('')
@@ -77,11 +84,29 @@ for i in range(3):
 			"02-1234-1234"
 		]
 	]
+}{									
+	"name+address+tel": [
+		[
+			"ㅇㅇ역",
+			"서울특별시 ㅇㅇ구 ㅇㅇ로 ㅇㅇ빌딩",
+			"02-1234-1234"
+		]
+	]
 }
 ~~~   
 ___
 #180629_menu
 -
+`페이지 이동과 json의 param을 값을 함수로 만들어 좀 더 보기 좋게 코드를 만들었다`   
+`구글에서 json파일 저장형식 'a'(추가)와 'w'(갱신)의 차이를 알게 되었다.`   
+`나중에 시기별로 자동적으로 갱신시키고 싶어 'w'를 너무 쓰고 싶었으나,`   
+`'w'를 사용하면 페이지가 계속 넘어가면서 맨 마지막 페이지 데이터만 저장되어 일단 'a'로 저장했다.`   
+
+~~~python
+def save_json(group_data):
+    with open('.json', 'a', encoding="EUC-KR") as make_file:
+        json.dump(group_data, make_file, ensure_ascii=False, indent="\t")
+~~~
 ~~~python
 def crawing_page(i,params):
     driver.find_element_by_xpath('//*[@id="container"]/div[1]/div/div/ul/li['+str(i)+']/a').click()
@@ -119,6 +144,45 @@ crawing_page(6,"")
 		],
 		[
 			""
+		]
+	]
+}
+~~~
+___
+#180701_ingredient #실패
+-
+
+`7월1일까지 약 7~8여개의 페이지를 크롤링하려고 시도했었는데`   
+`각 페이지 사정상 버튼의 xpath의 값이 달라 입력이 안되는 경우도 있었고,`     
+`페이지가 asp이어서 위치나 메뉴의 페이지가 바뀌는데 정작 크롤링한 데이터는 1페이지에 멈춰있는 경우도 많았다.`      
+`또 크롤링을 했다고 하더라도 json에 익숙하지 않다보니 형식을 어떻게 해야할지 감을 잡지 못했다.`   
+
+~~~json
+{
+	"sandwich_ingredients": [
+		[
+			"스파이시 ",
+			[
+				"ㅇㅇㅇㅇ 5장"
+			],
+			[
+				"ㅇㅇㅇ 5장"
+			],
+			[
+				"ㅁㅁ 2장"
+			],
+			[
+				"ㅇㅇㅇ 1스쿱"
+			]
+		]
+	]
+}{
+	"sandwich_ingredients": [
+		[
+			"베지",
+			[
+				"각종 야채"
+			]
 		]
 	]
 }

@@ -362,7 +362,7 @@ divide(count,data,output)
 ]
 ~~~
     
-    
+___   
 `count값으로 나눠주고 count만큼 이름과 가격을 묶어준다는 것은 지난번 파이썬 파일과 같다.`   
 `문제는 저 수많은 a[0],a[1]...a[71] 들인데,`   
 `for문을 돌려 a[i]를 입력해주는 좋은 방법이 있을것같아 여러방법으로 시도했지만,`    
@@ -395,4 +395,38 @@ for i in range(0,count):
 	"price"
 }
 ~~~
-`이런 식으로 name과 price만 나오는 사태가 벌어졌다.`   
+`이런 식으로 name과 price만 나오는 사태가 벌어졌다.` 
+`일단 급한건 db저장이니 다른 팀원을 위해 잠시 접어두기로 한다.`    
+___
++왜 됨?? 
+`180713 00:20 read.me 작성도중 애매하게 json이 되는 것을 발견했다. 좀 더 고쳐 봐야 겠다.`    
+~~~python
+    divide(count,data,output)
+    for i in range(0,count):
+        data_all[i]={
+            'name':output[0][i],
+            'price':output[1][i],
+        }
+        a[i]=data_all[i]
+    save_json(a,'twosome_menu.json')
+~~~
+~~~json
+{
+	"0": {
+		"name": "상그리아 에이드",
+		"price": "6000"
+	},
+	"1": {
+		"name": "레몬 셔벗 에이드",
+		"price": "6500"
+	},
+	"2": {
+		"name": "수박주스",
+		"price": "5500"
+	},
+	"3": {
+		"name": "콜드브루 오트 라떼",
+		"price": "6000"
+	}
+}
+~~~

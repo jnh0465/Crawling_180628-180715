@@ -466,5 +466,31 @@ with open(".json") as json_file:
         )
 ~~~
 `이 코드를 실행하면 미리 aws cli로 입력되어있는 IAM계정을 통해 dynamodb에 미리 만들어진 테이블로 저장된다.`   
-`리눅스를 사용하고 싶었으나 chromedriver등 자잘한 오류때문에 윈도우를 택했고`   
+___
+`ec2 리눅스를 사용하고 싶었으나 chromedriver등 자잘한 오류때문에 윈도우를 택했고`   
 `작업스케줄링을 이용해 하루에 한번씩 돌게하고 파일간의 간격은 3분으로 했다.`   
+~~~
+#ec2윈도우 설정
+https://www.python.org/downloads/release/python-365/		36.5	32
+aws cli 설치						msi 	32
+
+파이썬 환경변수설정 
+pip install selenium
+pip install beautifulsoup4
+pip install boto3
+aws configure  (iam 설정)
+aws ec2 describe-instances(실행 인스턴스 세부정보)
+aws s3 cp --recursive s3://ec2-crawling-pythoncode-180713 s3
+크롬설치
+작업스케줄러
+
+~~~
+`작업스케줄러설정`    
+![1](https://user-images.githubusercontent.com/38582562/43404760-3c3472c8-9453-11e8-9cab-b5fb0398a930.PNG)
+![2](https://user-images.githubusercontent.com/38582562/43404761-3c5f8b48-9453-11e8-9d64-a25f987c16d6.PNG)
+![3](https://user-images.githubusercontent.com/38582562/43404762-3c98b31e-9453-11e8-81b7-b6bc71efeadd.PNG)
+![4](https://user-images.githubusercontent.com/38582562/43404763-3cc39a2a-9453-11e8-88ca-916074f01d72.PNG)
+![5](https://user-images.githubusercontent.com/38582562/43404764-3cea5714-9453-11e8-825c-dc5f84f07ef0.PNG)
+___
+#180714 결과
+-

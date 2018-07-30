@@ -436,3 +436,35 @@ ___
 	}
 }
 ~~~
+___
+#180710_loadtable
+-
+~~~python
+from __future__ import print_function # Python 2/3 compatibility
+import boto3
+import json
+
+dynamodb = boto3.resource('dynamodb',region_name='ap-northeast-1')
+
+table = dynamodb.Table('')
+
+with open(".json") as json_file:
+    menus = json.load(json_file, parse_float = decimal.Decimal)
+    for menu in menus:
+        name = menu['name']
+        price = menu['price']
+        num = int(menu['num'])
+
+        print("Adding menu:", name, price, num)
+
+        table.put_item(
+           Item={
+               'name': name,
+               'price': price,
+               'num':num
+            }
+        )
+~~~
+`이 코드를 실행하면 미리 aws cli로 입력되어있는 IAM계정을 통해 dynamodb에 미리 만들어진 테이블로 저장된다.`   
+`리눅스를 사용하고 싶었으나 chromedriver등 자잘한 오류때문에 윈도우를 택했고`   
+`작업스케줄링을 이용해 하루에 한번씩 돌게하고 파일간의 간격은 3분으로 했다.`   

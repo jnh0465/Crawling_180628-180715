@@ -13,7 +13,7 @@ CloudWatch Events 트리거를 연결해 cron식으로 하루에 한 번씩 dyna
 `   
 - [x] crawling_name.py를 실행해 얻은 데이터를 json파일로 저장   
 - [x] boto3(aws sdk for python)를 import해 dynamodb에 테이블 생성, 로드, 삭제, 검색하는 코드 만들기
-- [ ] aws ec2(윈도우)에서 하루에 한 번씩 페이지를 크롤링해 얻은 데이터를 aws dynamodb로 전송  
+- [x] aws ec2(윈도우)에서 하루에 한 번씩 페이지를 크롤링해 얻은 데이터를 aws dynamodb로 전송  
 
 `
 희망사항 :

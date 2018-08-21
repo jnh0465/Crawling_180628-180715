@@ -1,0 +1,16 @@
+[
+	{
+		"num": 1,
+		"kname": "제주프라페",
+		"ename": "JejuFrappe",
+		"price": "5800",
+		"url": "https://s3.amazonaws.com/.jpg"
+	},
+  {
+    "num": 2,
+    "kname": "블랙티프라페",
+    "ename": "BlackTeaFrappe",
+    "price": "5800",
+    "url": "https://s3.amazonaws.com/.jpg"
+  }
+]
